@@ -581,6 +581,16 @@
         const resRoom = document.getElementById('res-room');
         const resLevel = document.getElementById('res-level');
 
+        const ROOM_LEVEL_MAP = {
+            'IJPN 5': 'LEVEL 4',
+            'IJPN 6': 'LEVEL 4',
+            'IJPN 7': 'LEVEL 4',
+            'IJPN 8': 'LEVEL 5',
+            'IJPN 9': 'LEVEL 5',
+            'IJPN 10': 'LEVEL 5',
+            'IJPN 11': 'LEVEL 5'
+        };
+
         const themeToggleBtn = document.getElementById('theme-toggle-btn');
         const themeIconSun = document.getElementById('theme-icon-sun');
         const themeIconMoon = document.getElementById('theme-icon-moon');
@@ -767,11 +777,12 @@
                 stateNotFound.classList.add('hidden');
                 stateFound.classList.remove('hidden');
 
+const room = match[2] ?? '-';
                 resBoxId.textContent = rawTarget;
                 resRack.textContent = match[0] ?? '-';
                 resShelf.textContent = match[1] ?? '-';
-                resRoom.textContent = match[2] ?? '-';
-                resLevel.textContent = '-';
+                resRoom.textContent = room;
+                resLevel.textContent = ROOM_LEVEL_MAP[room] || ROOM_LEVEL_MAP[room.trim().toUpperCase()] || '-';
 
                 if (isExactSelect) addRecentSearch(rawTarget);
             } else {
